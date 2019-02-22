@@ -5,7 +5,6 @@
     <title>小米</title>
     <link rel="stylesheet" href="css/font.css">
     <link rel="stylesheet" href="css/index.css">
-
 </head>
 <body>
 <div class="topBar">
@@ -79,13 +78,27 @@
 
 </div>
 <!--header-->
-<div class="banner content">
-    <ul class="imgbox">
-        <li style="z-index: 1;"><a href=""><img src="images/b1.jpg" alt=""></a></li>
-        <li><a href=""><img src="images/b2.jpg" alt=""></a></li>
-        <li><a href=""><img src="images/b3.jpg" alt=""></a></li>
+<div class="banner">
+    <ul id="imgbox">
+        <li class="active"><a href=""><img src="images/1.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/2.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/3.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/4.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/5.jpg" alt=""></a></li>
     </ul>
-
+    <ul id="pagerbox">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="left">
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="righttt">
+        <i class="iconfont icon-aaa" style="font-size: 40px; line-height: 70px"></i>
+    </div>
     <ul class="aslide">
         <li class="asideList">
             <a href="">手机 电话卡
@@ -128,15 +141,11 @@
                 <i class="iconfont icon-gengduo"></i></a>
         </li>
     </ul>
-    <div class="left">
-        <i class="iconfont icon-left"></i>
-    </div>
-    <div class="righttt">
-        <i class="iconfont icon-aaa" style="font-size: 40px; line-height: 70px"></i>
-    </div>
+
 </div>
 <div class="right">
     <div class="rightfir">
+        <div class="ewm"><img src="images/ewm.png" alt=""></div>
         <i class="iconfont icon-mobile"></i>
     </div>
     <div class="rightsec">
@@ -705,6 +714,87 @@
     </div>
     <p class="wei">探索黑科技，小米为发烧而生</p>
 </div>
+<script>
+    let now=0;
+    function move () {
+        now++;
+        if (now===5){
+            now=0;
+        }
+        if (now===-1){
+            now=pagers.length-1;
+        }
+        for (let i=0;i<imgs.length;i++){
+            imgs[i].classList.remove("active");
+            pagers[i].classList.remove("active");
+        }
+        imgs[now].classList.add("active");
+        pagers[now].classList.add("active");
+    }
+    let banner=document.querySelector(".banner");
+    let pagers=document.querySelectorAll("#pagerbox>li");
+    let imgs=document.querySelectorAll("#imgbox li");
+    let flag=false;//声明变量，为之后的鼠标状态
+    pagers.forEach(function (ele,index) {
+        ele.onclick=function () {
+            flag=true;
+            now=index;
+            clearInterval(st);
+            for (let i=0;i<imgs.length;i++){
+                imgs[i].classList.remove("active");
+                pagers[i].classList.remove("active");
+            }
+            imgs[index].classList.add("active");
+            pagers[index].classList.add("active");
+        }
+    });
+    banner.onmouseenter=function () {
+        clearInterval(st);//见上声明
+    };
+    banner.onmouseleave=function(){
+        if (flag){
+            return;//
+        }
+        st=setInterval(move,3000);
+    };
+    let st=setInterval(move,3000);
+
+    let next=document.querySelector(".righttt");
+    let prev=document.querySelector(".left");
+    let flag2=true;
+    next.onclick=function () {
+        if (flag2){
+            flag2=false;
+            move();
+            flag=true;
+        }
+    };
+    prev.onclick=function () {
+        if (flag2) {
+            flag2 = false;
+            now -= 2;
+            move();
+            flag = true;
+        }
+    };
+    imgs.forEach(function (ele,index) {
+        ele.addEventListener("transitionend",function () {
+            flag2=true;
+        })
+    });
+
+    {
+
+        let item=document.querySelector(".rightfir");
+        let ewm=document.querySelector(".ewm");
+        item.onmouseenter=function () {
+            ewm.style.display="block";
+        };
+        item.onmouseleave=function () {
+            ewm.style.display="none";
+        }
+    }
+</script>
 </body>
 </html>
 

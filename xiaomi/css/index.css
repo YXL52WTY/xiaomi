@@ -145,6 +145,21 @@ a {
     right: 0;
     position: fixed;
 }
+.ewm{
+    width: 120px;
+    height: 100px;
+    /*display: none;*/
+    position: absolute;
+    left: -120px;
+    top:0;
+    /*background: #184dff;*/
+    display: none;
+
+}
+.ewm>img{
+    width: 100px;
+    height: 100px;
+}
 .right .rightfir{
     width: 82px;
     height: 90px;
@@ -182,22 +197,60 @@ a {
 }
 .banner{
     height: 460px;
+    width: 1226px;
+    margin: 0 auto;
     /*background: orangered;*/
     position: relative;
 }
-.imgbox{
-    width: 100%;
-    height: 100%;
+#imgbox{
+    width: 1226px;
+    height: 460px;
 }
-.imgbox li , .imgbox li a , .imgbox li a img{
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-.imgbox li{
+#imgbox li{
+    width: 1226px;
+    height: 460px;
+    /*background: #cccccc;*/
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
+    transition: all 0.8s;
+    opacity: 0.6;
+}
+#imgbox li a{
+    display: block;
+    width: 1226px;
+    height: 460px;
+}
+#imgbox li a img{
+    display: block;
+    width: 1226px;
+    height: 460px;
+}
+#imgbox>li.active{
+    z-index:1;
+    opacity: 1;
+}
+#pagerbox{
+    width: 100px;
+    height: 10px;
+    /*background: red;*/
+    position: absolute;
+    bottom: 20px;
+    right:80px;
+    z-index: 99999;
+    display: flex;
+    justify-content: space-around;
+}
+#pagerbox>li{
+    width: 6px;
+    height: 6px;
+    background: #333333;
+    border: 2px solid #aaa;
+    border-radius: 50%;
+}
+#pagerbox>li.active{
+    border: 2px solid #333;
+    background: #cccccc;
 }
 ul.aslide{
     position: absolute;
@@ -741,19 +794,18 @@ ul.aslide{
     bottom: 0;
     width:100%;
     background: #ff9211;
-    animation:dong 0.3s linear;
-    animation-fill-mode:forwards;
+    animation:dong 0.5s linear;
     display: inline-block;
 }
-/*黄块上移*/
-@keyframes dong {
-    from{
-        height:0;
+/*    !**!黄块上移*/
+    @keyframes dong {
+        from{
+            height:0;
+        }
+        to{
+            height: 70px;
+        }
     }
-    to{
-        height: 70px;
-    }
-}
 .hidden .p4{
     line-height: 30px;
     text-align: left;
@@ -960,8 +1012,6 @@ ul.aslide{
     display: flex;
     justify-content: space-between;
     padding: 27px 0;
-    display: flex;
-    justify-content: space-between;
 }
 .service li{
     width: 20%;
