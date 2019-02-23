@@ -507,7 +507,7 @@ ul.aslide{
 .phone{
     width: 100%;
     background: rgba(0,0,0,0.1);
-    border: 1px solid white;
+    /*border: 1px solid white;*/
     margin-top: 50px;
 }
 .pContent{
@@ -1105,7 +1105,7 @@ ul.aslide{
 .siteInfo{
     background-color: #fafafa;
     height: 172px;
-    /*padding: 30px 0;*/
+    padding: 30px 0;
 }
 .siteInfo .siteInfoContainer{
     height: 123px;
